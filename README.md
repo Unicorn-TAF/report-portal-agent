@@ -1,4 +1,7 @@
-# report-portal-agent
+![Nuget](https://img.shields.io/nuget/v/Unicorn.ReportPortalAgent?style=plastic)
+![Nuget](https://img.shields.io/nuget/dt/Unicorn.ReportPortalAgent?style=plastic)
+
+# ReportPortal agent
 
 Unicorn has ability to generate powerful test results report using [EPAM Report Portal](https://reportportal.io)
 
