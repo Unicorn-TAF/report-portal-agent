@@ -5,9 +5,11 @@ using ReportPortal.Client.Abstractions;
 using ReportPortal.Client.Abstractions.Models;
 using ReportPortal.Shared.Configuration;
 using ReportPortal.Shared.Extensibility;
-using UTesting = Unicorn.Taf.Core.Testing;
+using ReportPortal.Shared.Reporter.Http;
+using UStatus = Unicorn.Taf.Core.Testing.Status;
+using UTest = Unicorn.Taf.Core.Testing.Test;
 
-namespace Unicorn.ReportPortalAgent
+namespace Unicorn.Reporting.ReportPortal
 {
     /// <summary>
     /// Report portal listener, which handles reporting stuff for all test items.
@@ -20,7 +22,7 @@ namespace Unicorn.ReportPortalAgent
         private readonly IExtensionManager _extensionManager = new ExtensionManager();
         private readonly IClientService _rpService;
 
-        private readonly Dictionary<UTesting.Status, Status> _statusMap;
+        private readonly Dictionary<UStatus, Status> _statusMap;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ReportPortalListener"/> class.<br/>
@@ -32,14 +34,14 @@ namespace Unicorn.ReportPortalAgent
 
             Config = new ConfigurationBuilder().AddDefaults(baseDir).Build();
 
-            _rpService = new ReportPortal.Shared.Reporter.Http.ClientServiceBuilder(Config).Build();
+            _rpService = new ClientServiceBuilder(Config).Build();
             _extensionManager.Explore(baseDir);
 
-            _statusMap = new Dictionary<UTesting.Status, Status>
+            _statusMap = new Dictionary<UStatus, Status>
             {
-                { UTesting.Status.Passed, Status.Passed },
-                { UTesting.Status.Failed, Status.Failed },
-                { UTesting.Status.Skipped, Status.Skipped },
+                { UStatus.Passed, Status.Passed },
+                { UStatus.Failed, Status.Failed },
+                { UStatus.Skipped, Status.Skipped },
             };
         }
 
@@ -56,12 +58,12 @@ namespace Unicorn.ReportPortalAgent
         /// <summary>
         /// Adds attachment to test (as bytes).
         /// </summary>
-        /// <param name="test"><see cref="UTesting.Test"/> instance</param>
+        /// <param name="test"><see cref="UTest"/> instance</param>
         /// <param name="text">attachment text</param>
         /// <param name="attachmentName">attachment name</param>
         /// <param name="mime">mime type</param>
         /// <param name="content">content in bytes</param>
-        public void ReportAddAttachment(UTesting.Test test, string text, string attachmentName, string mime, byte[] content)
+        public void ReportAddAttachment(UTest test, string text, string attachmentName, string mime, byte[] content)
         {
             if (_testFlowIds.ContainsKey(test.Outcome.Id))
             {

@@ -4,10 +4,12 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
+using Unicorn.Taf.Core.Steps;
 using Unicorn.Taf.Core.Testing;
 using ULogging = Unicorn.Taf.Core.Logging;
 
-namespace Unicorn.ReportPortalAgent
+namespace Unicorn.Reporting.ReportPortal
 {
     /// <summary>
     /// Report portal listener, which handles reporting stuff for all test items.
@@ -38,5 +40,15 @@ namespace Unicorn.ReportPortalAgent
                 AddLog(currentTest.Outcome.Id, _logLevels[level], info);
             }
         }
+
+        /// <summary>
+        /// Reports logs to current executing suite method.
+        /// </summary>
+        /// <param name="method">method itself</param>
+        /// <param name="arguments">method arguments</param>
+        internal void ReportStepInfo(MethodBase method, object[] arguments) =>
+            ReportTestMessage(
+                ULogging.LogLevel.Info,
+                StepsUtilities.GetStepInfo(method, arguments));
     }
 }
