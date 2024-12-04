@@ -1,8 +1,10 @@
-# report-portal-agent
+![Nuget](https://img.shields.io/nuget/v/Unicorn.Reporting.ReportPortal?style=plastic) ![Nuget](https://img.shields.io/nuget/dt/Unicorn.Reporting.ReportPortal?style=plastic)
 
-Unicorn has ability to generate powerful test results report using [EPAM Report Portal](https://reportportal.io)
+# Unicorn.Reporting.ReportPortal
 
-Just deploy EPAM ReportPortal instance, add tests project dependency to [Unicorn.ReportPortalAgent](https://www.nuget.org/packages/Unicorn.ReportPortalAgent) package and initialize reporter during tests assembly initialization.
+Unicorn has ability to generate powerful test results report using [Report Portal](https://reportportal.io)
+
+Just deploy ReportPortal instance, add tests project dependency to [Unicorn.Reporting.ReportPortal](https://www.nuget.org/packages/Unicorn.Reporting.ReportPortal) package and initialize reporter during tests assembly initialization.
 ***
 Place **ReportPortal.config.json** configuration file to directory with test assemblies. Sample content is presented below:
 ```json
@@ -26,23 +28,24 @@ Place **ReportPortal.config.json** configuration file to directory with test ass
 
 then add code with reporting initialization to `[TestsAssembly]`
 ```csharp
-using Unicorn.Core.Testing.Tests.Attributes;
-using Unicorn.ReportPortalAgent;
+using Unicorn.Taf.Api;
+using Unicorn.Taf.Core.Testing.Tests.Attributes;
+using Unicorn.Reporting.ReportPortal;
 
 namespace Tests
 {
     [TestsAssembly]
     public static class TestsAssembly
     {
-        private static ReportPortalReporterInstance rpInstance;
+        private static ITestReporter reporter;
 
         [RunInitialize]
         public static void InitRun()
         {
-            rpInstance = new ReportPortalReporterInstance(); // Start new launch in Report Portal.
+            reporter = new ReportPortalReporter(); // Start new launch in Report Portal.
             
             /* in case you want to report into already started existing launch use
-             * rpInstance = new ReportPortalReporterInstance(existing_launch_id); */
+             * reporter = new ReportPortalReporter(existing_launch_id); */
             
         }
 
@@ -53,5 +56,5 @@ namespace Tests
             reporter = null;
         }
     }
-}  
+}
 ```

@@ -1,9 +1,9 @@
 ﻿using System;
 using ReportPortal.Client.Abstractions.Models;
 using ReportPortal.Client.Abstractions.Requests;
-using ULogging = Unicorn.Taf.Core.Logging;
+using ULog = Unicorn.Taf.Core.Logging.ULog;
 
-namespace Unicorn.ReportPortalAgent
+namespace Unicorn.Reporting.ReportPortal
 {
     /// <summary>
     /// Report portal listener, which handles reporting stuff for all test items.
@@ -30,9 +30,7 @@ namespace Unicorn.ReportPortalAgent
             }
             catch (Exception exception)
             {
-                ULogging.Logger.Instance.Log(
-                    ULogging.LogLevel.Warning,
-                    Prefix + BaseMessage + Environment.NewLine + exception);
+                ULog.Warn(Prefix + BaseMessage + Environment.NewLine + exception);
             }
         }
 
@@ -51,9 +49,7 @@ namespace Unicorn.ReportPortalAgent
             }
             catch (Exception exception)
             {
-                ULogging.Logger.Instance.Log(
-                    ULogging.LogLevel.Warning,
-                    Prefix + BaseMessage + Environment.NewLine + exception);
+                ULog.Warn(Prefix + BaseMessage + Environment.NewLine + exception);
             }
         }
     }

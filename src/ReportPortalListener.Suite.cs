@@ -4,10 +4,10 @@ using System.Text;
 using ReportPortal.Client.Abstractions.Models;
 using ReportPortal.Client.Abstractions.Requests;
 using UTesting = Unicorn.Taf.Core.Testing;
-using ULogging = Unicorn.Taf.Core.Logging;
 using ReportPortal.Shared.Reporter;
+using ULog = Unicorn.Taf.Core.Logging.ULog;
 
-namespace Unicorn.ReportPortalAgent
+namespace Unicorn.Reporting.ReportPortal
 {
     public partial class ReportPortalListener
     {
@@ -53,9 +53,7 @@ namespace Unicorn.ReportPortalAgent
             }
             catch (Exception exception)
             {
-                ULogging.Logger.Instance.Log(
-                    ULogging.LogLevel.Warning,
-                    Prefix + BaseMessage + Environment.NewLine + exception);
+                ULog.Warn(Prefix + BaseMessage + Environment.NewLine + exception);
             }
         }
 
@@ -118,9 +116,7 @@ namespace Unicorn.ReportPortalAgent
             }
             catch (Exception exception)
             {
-                ULogging.Logger.Instance.Log(
-                    ULogging.LogLevel.Warning,
-                    Prefix + BaseMessage + Environment.NewLine + exception);
+                ULog.Warn(Prefix + BaseMessage + Environment.NewLine + exception);
             }
         }
     }
