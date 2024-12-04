@@ -136,8 +136,7 @@ namespace Unicorn.Reporting.ReportPortal
 
                 if (suiteMethod.Outcome.Result == UTesting.Status.Skipped)
                 {
-                    var skipMsg =
-                        "The test is skipped, please check if BeforeSuite or test which current test depends on failed.";
+                    var skipMsg = suiteMethod.Outcome.FailMessage;
 
                     finishTestRequest.Description =
                         $"<span style=\"color: #c7254e; background-color: #f9f2f4; \">{skipMsg}</span>";
