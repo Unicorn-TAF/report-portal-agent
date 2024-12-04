@@ -7,8 +7,6 @@ using ReportPortal.Client.Abstractions.Responses;
 using ReportPortal.Shared.Reporter;
 using Unicorn.Taf.Core.Testing;
 using UTesting = Unicorn.Taf.Core.Testing;
-using ULog = Unicorn.Taf.Core.Logging.ULog;
-
 
 namespace Unicorn.Reporting.ReportPortal
 {
@@ -68,7 +66,7 @@ namespace Unicorn.Reporting.ReportPortal
             }
             catch (Exception exception)
             {
-                ULog.Warn(Prefix + BaseMessage + Environment.NewLine + exception);
+                Console.WriteLine(Prefix + BaseMessage + Environment.NewLine + exception);
             }
         }
 
@@ -157,7 +155,7 @@ namespace Unicorn.Reporting.ReportPortal
             }
             catch (Exception exception)
             {
-                ULog.Warn(Prefix + BaseMessage + Environment.NewLine + exception);
+                Console.WriteLine(Prefix + BaseMessage + Environment.NewLine + exception);
             }
         }
 

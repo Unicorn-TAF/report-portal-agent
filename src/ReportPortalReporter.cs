@@ -1,5 +1,6 @@
 ﻿using Unicorn.Taf.Api;
 using Unicorn.Taf.Core;
+using Unicorn.Taf.Core.Logging;
 
 namespace Unicorn.Reporting.ReportPortal
 {
@@ -54,6 +55,14 @@ namespace Unicorn.Reporting.ReportPortal
         /// <param name="defectType">report portal defect type ID</param>
         public void SetSkippedTestsDefectType(string defectType) =>
             _listener.SkippedTestDefectType = defectType;
+
+        /// <summary>
+        /// Logs message with specified level to current test entry.
+        /// </summary>
+        /// <param name="logLevel">logging level</param>
+        /// <param name="message">message to log</param>
+        public void LogMessage(LogLevel logLevel, string message) =>
+            _listener.ReportTestMessage(logLevel, message);
 
         /// <summary>
         /// Unsubscribes from events and finishes launch if it is not external.
