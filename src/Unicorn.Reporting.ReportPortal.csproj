@@ -15,12 +15,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ReportPortal.Client" Version="3.0.5" />
-    <PackageReference Include="ReportPortal.Shared" Version="3.1.3" />
-    <PackageReference Include="Unicorn.Taf.Core" Version="4.0.0" />
+    <PackageReference Include="ReportPortal.Client" Version="3.10.0" />
+    <PackageReference Include="ReportPortal.Shared" Version="3.10.0" />
+    <PackageReference Include="Unicorn.Taf.Core" Version="4.2.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="ReportPortal.config.Template.json"/>
+    <Content Include="ReportPortal.config.Template.json" />
   </ItemGroup>
 </Project>

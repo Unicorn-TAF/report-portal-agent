@@ -104,10 +104,10 @@ namespace Unicorn.Reporting.ReportPortal
                 // adding failure items
                 if (suiteMethod.Outcome.Result == UTesting.Status.Failed)
                 {
-                    finishTestRequest.Description = suiteMethod.Outcome.Exception.Message;
+                    finishTestRequest.Description = suiteMethod.Outcome.FailMessage;
 
-                    var text = suiteMethod.Outcome.Exception.Message + Environment.NewLine + 
-                        suiteMethod.Outcome.Exception.StackTrace;
+                    var text = suiteMethod.Outcome.FailMessage + Environment.NewLine + 
+                        suiteMethod.Outcome.FailStackTrace;
 
                     AddLog(id, LogLevel.Error, text);
 
