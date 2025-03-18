@@ -43,7 +43,7 @@ namespace Unicorn.Reporting.ReportPortal
                 /* 
                  * There is an issue in Unicorn.Taf.Core where Guid is random each time 
                  * for same suite. To make re-run functioning properly for parameterized suites 
-                 * it's necessaty to consider parent suite data set name as unique prefix 
+                 * it's necessary to consider parent suite data set name as unique prefix 
                  * for test id as test has same id between sets.
                  */
                 var idPrefix = _suitesSetNames.ContainsKey(parentId) ?
